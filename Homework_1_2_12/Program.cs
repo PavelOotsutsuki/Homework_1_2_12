@@ -38,6 +38,20 @@ namespace Homework_1_2_12
             bool isCorrectCommand = true;
             int healing;
             int healingMax;
+            const string CASE_SPELL_RASHAMON = "1";
+         //   const string caseSpellRashamon = "1";
+            const string CASE_SPELL_HYGANZAKURA = "2";
+         //   const string caseSpellHyganzakura = "2";
+            const string CASE_SPELL_INTERDIMENSIONAL_FRACTURE = "3";
+         //   const string caseSpellInterdimensionalFracture = "3";
+            const string CASE_SPELL_SHADOWMAIN = "4";
+         //   const string caseSpellShadowmain = "4";
+            const string CASE_TOTEM_SERENITY = "3";
+         //   const string caseTotemSerenity = "3";
+            const string CASE_FURY_TOTEM = "1";
+         //   const string caseFuryTotem = "1";
+            const string CASE_RAGE_TOTEM = "2";
+         //   const string caseRageTotem = "2";
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Добро пожаловать, " + playerName + "! Твой противник — " + bossName + "! Покажи на что ты способен!");
@@ -57,12 +71,12 @@ namespace Homework_1_2_12
                 Console.WriteLine();
                 Console.WriteLine("Атаки героя:");
                 Console.WriteLine();
-                Console.Write("1. ");
+                Console.Write(CASE_SPELL_RASHAMON + ". ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Рашамон");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(": призывает " + spellRashamonCountShadowGhost + " теневого духа. Отнимает " + spellRashamonSelfDamage + " здоровья игроку.");
-                Console.Write("2. ");
+                Console.Write(CASE_SPELL_HYGANZAKURA + ". ");
 
                 if (countShadowGhost > 0)
                 {
@@ -76,7 +90,7 @@ namespace Homework_1_2_12
                 Console.Write("Хуганзакура");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(": Может быть выполнен только если у вас под контролем есть теневой дух. Наносит " + spellHyganzakuraDamageOnOneShadowGhost + " ед. урона за каждого теневого духа на вашей стороне.");
-                Console.Write("3. ");
+                Console.Write(CASE_SPELL_INTERDIMENSIONAL_FRACTURE + ". ");
 
                 if (countShadowGhost >= spellInterdimensionalFractureMinShadowGhost)
                 {
@@ -90,7 +104,7 @@ namespace Homework_1_2_12
                 Console.Write("Межпространственный разлом");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(": позволяет скрыться в разломе до вашего следующего хода и восстановить " + spellInterdimensionalFractureHealing + " ед. здоровья. Пока вы в разломе, вы неуязвимы. Необходимо чтобы под контролем было хотя бы " + spellInterdimensionalFractureMinShadowGhost + " теневых духа. После использования заклинания минимальная необходимость количества теневых духов под контролем увеличивается на " + spellInterdimensionalFractureShadowGhostGain + ".");
-                Console.Write("4. ");
+                Console.Write(CASE_SPELL_SHADOWMAIN + ". ");
 
                 if (countShadowGhost >= spellShadowmainMinCountShadowGhost && unableSpellShadowmain==false)
                 {
@@ -121,12 +135,12 @@ namespace Homework_1_2_12
 
                 switch (commandPlayer)
                 {
-                    case "1":
+                    case CASE_SPELL_RASHAMON:
                         countShadowGhost += spellRashamonCountShadowGhost;
                         playerHealthPoints -= spellRashamonSelfDamage;
                         Console.WriteLine("Вы применили заклинание Рашамон, нанесли себе " + spellRashamonSelfDamage + " ед. урона и призвали " + spellRashamonCountShadowGhost + " теневого духа:");
                         break;
-                    case "2":
+                    case CASE_SPELL_HYGANZAKURA:
                         if (countShadowGhost > 0)
                         {
                             int damage = countShadowGhost * spellHyganzakuraDamageOnOneShadowGhost;
@@ -140,7 +154,7 @@ namespace Homework_1_2_12
                         }
 
                         break;
-                    case "3":
+                    case CASE_SPELL_INTERDIMENSIONAL_FRACTURE:
                         if (countShadowGhost >= spellInterdimensionalFractureMinShadowGhost)
                         {
                             isPlayerInvulnerability = true;
@@ -163,7 +177,7 @@ namespace Homework_1_2_12
                         }
 
                         break;
-                    case "4":
+                    case CASE_SPELL_SHADOWMAIN:
                         if (countShadowGhost >= spellShadowmainMinCountShadowGhost && unableSpellShadowmain==false)
                         {
                             unableSpellShadowmain = true;
@@ -196,7 +210,7 @@ namespace Homework_1_2_12
                     Console.WriteLine();
                     Console.WriteLine("Атаки противника:");
                     Console.WriteLine();
-                    Console.Write("1. ");
+                    Console.Write(CASE_FURY_TOTEM + ". ");
 
                     if (totemPower > 0 && isPlayerInvulnerability==false)
                     {
@@ -210,7 +224,7 @@ namespace Homework_1_2_12
                     Console.Write("Тотемная ярость");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(": призывает с небес тотем ярости, который попадает на главного противника и взрывается нанося " + furyTotemDamage + " ед. урона. Не может быть применен на вспомогательные цели. Расходует " + furyTotemCostTotemPower + " ед. тотемной силы.");
-                    Console.Write("2. ");
+                    Console.Write(CASE_RAGE_TOTEM + ". ");
 
                     if (isPlayerInvulnerability==true)
                     {
@@ -224,7 +238,7 @@ namespace Homework_1_2_12
                     Console.Write("Тотемное бешенство");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(": уничтожает теневого духа. Можно использовать только если главный противник неуязвим.");
-                    Console.Write("3. ");
+                    Console.Write(CASE_TOTEM_SERENITY + ". ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Тотемная безмятежность");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -239,37 +253,37 @@ namespace Homework_1_2_12
                     {
                         if (countShadowGhost>0)
                         {
-                            commandBoss = "2";
+                            commandBoss = CASE_RAGE_TOTEM;
                         }
                         else
                         {
-                            commandBoss = "3";
+                            commandBoss = CASE_TOTEM_SERENITY;
                         }
                     }
                     else
                     {
                         if(totemPower>0)
                         {
-                            commandBoss = "1";
+                            commandBoss = CASE_FURY_TOTEM;
                         }
                         else
                         {
-                            commandBoss = "3";
+                            commandBoss = CASE_TOTEM_SERENITY;
                         }
                     }
 
                     switch (commandBoss)
                     {
-                        case "1":
+                        case CASE_FURY_TOTEM:
                             playerHealthPoints -= furyTotemDamage;
                             totemPower--;
                             Console.WriteLine("Босс применил тотемную ярость и нанес вам " + furyTotemDamage + " ед. урона");
                             break;
-                        case "2":
+                        case CASE_RAGE_TOTEM:
                             countShadowGhost--;
                             Console.WriteLine("Босс применил тотемное бешенство и уничтожил вашего теневого духа");
                             break;
-                        case "3":
+                        case CASE_TOTEM_SERENITY:
                             totemPowerMax++;
                             totemPower = totemPowerMax;
                             healing = totemSerenityHealingOnOneTotemPower * totemPower;
