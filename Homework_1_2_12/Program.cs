@@ -16,7 +16,7 @@ namespace Homework_1_2_12
             string playerName = "Теневой маг";
             int playerHealthPointsMax = 1000;
             int playerHealthPoints = playerHealthPointsMax;
-            bool finishBattle = false;
+            bool isBattle = false;
             int furyTotemDamage = 100;
             int totemPowerMax = 3;
             int totemPower = totemPowerMax;
@@ -44,78 +44,74 @@ namespace Homework_1_2_12
             Console.WriteLine("Нажмите любую кнопку для начала боя");
             Console.ReadKey();
 
-            while (!finishBattle)
+            while (isBattle==false)
             {
                 Console.Clear();
 
-                if (isCorrectCommand)
+                if (isCorrectCommand==true)
                 {
                     round++;
                 }
 
                 Console.WriteLine("Раунд " + round + ":");
                 Console.WriteLine();
+                Console.WriteLine("Атаки героя:");
+                Console.WriteLine();
+                Console.Write("1. ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Рашамон");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(": призывает " + spellRashamonCountShadowGhost + " теневого духа. Отнимает " + spellRashamonSelfDamage + " здоровья игроку.");
+                Console.Write("2. ");
 
-                if (playerName == "Теневой маг")
+                if (countShadowGhost > 0)
                 {
-                    Console.WriteLine("Атаки героя:");
-                    Console.WriteLine();
-                    Console.Write("1. ");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Рашамон");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(": призывает " + spellRashamonCountShadowGhost + " теневого духа. Отнимает " + spellRashamonSelfDamage + " здоровья игроку.");
-                    Console.Write("2. ");
-
-                    if (countShadowGhost > 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-
-                    Console.Write("Хуганзакура");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(": Может быть выполнен только если у вас под контролем есть теневой дух. Наносит " + spellHyganzakuraDamageOnOneShadowGhost + " ед. урона за каждого теневого духа на вашей стороне.");
-                    Console.Write("3. ");
-
-                    if (countShadowGhost >= spellInterdimensionalFractureMinShadowGhost)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-
-                    Console.Write("Межпространственный разлом");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(": позволяет скрыться в разломе до вашего следующего хода и восстановить " + spellInterdimensionalFractureHealing + " ед. здоровья. Пока вы в разломе, вы неуязвимы. Необходимо чтобы под контролем было хотя бы " + spellInterdimensionalFractureMinShadowGhost + " теневых духа. После использования заклинания минимальная необходимость количества теневых духов под контролем увеличивается на " + spellInterdimensionalFractureShadowGhostGain + ".");
-                    Console.Write("4. ");
-
-                    if (countShadowGhost >= spellShadowmainMinCountShadowGhost && !unableSpellShadowmain)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-
-                    Console.Write("Шэдоумэйн");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(": можно использовать только если у вас под контролем " + spellShadowmainMinCountShadowGhost + " или более теневых духов. Ваше максимальное здоровье увеличивается на " + spellShadowmainMaxHealthPointsPercent + "% до конца боя. Полностью восстанавливаете здоровье. Уничтожаете всех ваших теневых духов. Может быть использовано один раз за бой.");
-                    Console.WriteLine();
-                    Console.WriteLine("Количество здоровья - " + playerHealthPoints);
-
-                    if (countShadowGhost > 0)
-                    {
-                        Console.WriteLine("У вас под контролем " + countShadowGhost + " теневых духов");
-                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                 }
 
+                Console.Write("Хуганзакура");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(": Может быть выполнен только если у вас под контролем есть теневой дух. Наносит " + spellHyganzakuraDamageOnOneShadowGhost + " ед. урона за каждого теневого духа на вашей стороне.");
+                Console.Write("3. ");
+
+                if (countShadowGhost >= spellInterdimensionalFractureMinShadowGhost)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+
+                Console.Write("Межпространственный разлом");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(": позволяет скрыться в разломе до вашего следующего хода и восстановить " + spellInterdimensionalFractureHealing + " ед. здоровья. Пока вы в разломе, вы неуязвимы. Необходимо чтобы под контролем было хотя бы " + spellInterdimensionalFractureMinShadowGhost + " теневых духа. После использования заклинания минимальная необходимость количества теневых духов под контролем увеличивается на " + spellInterdimensionalFractureShadowGhostGain + ".");
+                Console.Write("4. ");
+
+                if (countShadowGhost >= spellShadowmainMinCountShadowGhost && unableSpellShadowmain==false)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+
+                Console.Write("Шэдоумэйн");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(": можно использовать только если у вас под контролем " + spellShadowmainMinCountShadowGhost + " или более теневых духов. Ваше максимальное здоровье увеличивается на " + spellShadowmainMaxHealthPointsPercent + "% до конца боя. Полностью восстанавливаете здоровье. Уничтожаете всех ваших теневых духов. Может быть использовано один раз за бой.");
+                Console.WriteLine();
+                Console.WriteLine("Количество здоровья - " + playerHealthPoints);
+
+                if (countShadowGhost > 0)
+                {
+                    Console.WriteLine("У вас под контролем " + countShadowGhost + " теневых духов");
+                }
+                
                 Console.WriteLine();
                 Console.Write("Введите номер заклинания: ");
                 string commandPlayer = Console.ReadLine();
@@ -168,7 +164,7 @@ namespace Homework_1_2_12
 
                         break;
                     case "4":
-                        if (countShadowGhost >= spellShadowmainMinCountShadowGhost && !unableSpellShadowmain)
+                        if (countShadowGhost >= spellShadowmainMinCountShadowGhost && unableSpellShadowmain==false)
                         {
                             unableSpellShadowmain = true;
                             playerHealthPointsMax += playerHealthPointsMax * spellShadowmainMaxHealthPointsPercent/100;
@@ -191,60 +187,55 @@ namespace Homework_1_2_12
 
 
 
-                if (isCorrectCommand)
+                if (isCorrectCommand==true)
                 {
                     Console.WriteLine(playerName + " - количество здоровья: " + playerHealthPoints);
                     Console.WriteLine(bossName + " - количество здоровья: " + bossHealthPoints);
                     Console.WriteLine("У вас под контролем " + countShadowGhost + " теневых духов");
                     Console.WriteLine("Количество тотемной силы - " + totemPower);
                     Console.WriteLine();
+                    Console.WriteLine("Атаки противника:");
+                    Console.WriteLine();
+                    Console.Write("1. ");
 
-                    if (bossName == "Тотемный скрытень")
+                    if (totemPower > 0 && isPlayerInvulnerability==false)
                     {
-                        Console.WriteLine("Атаки противника:");
-                        Console.WriteLine();
-                        Console.Write("1. ");
-
-                        if (totemPower > 0 && !isPlayerInvulnerability)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                        }
-
-                        Console.Write("Тотемная ярость");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(": призывает с небес тотем ярости, который попадает на главного противника и взрывается нанося " + furyTotemDamage + " ед. урона. Не может быть применен на вспомогательные цели. Расходует " + furyTotemCostTotemPower + " ед. тотемной силы.");
-                        Console.Write("2. ");
-
-                        if (isPlayerInvulnerability)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                        }
-
-                        Console.Write("Тотемное бешенство");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(": уничтожает теневого духа. Можно использовать только если главный противник неуязвим.");
-                        Console.Write("3. ");
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("Тотемная безмятежность");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(": максимальное количество тотемной силы увеличивается на " + totemSerenityTotemPowerGain + ". Накапливает полный запас тотемной силы. Восстанавливает " + totemSerenityHealingOnOneTotemPower + " ед. здоровья за каждую единицу тотемной силы.");
-                        Console.WriteLine();
-                        Console.WriteLine("Количество тотемной силы - " + totemPower);
-                        Console.WriteLine("Количество здоровья - " + bossHealthPoints);
-                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
                     }
 
+                    Console.Write("Тотемная ярость");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(": призывает с небес тотем ярости, который попадает на главного противника и взрывается нанося " + furyTotemDamage + " ед. урона. Не может быть применен на вспомогательные цели. Расходует " + furyTotemCostTotemPower + " ед. тотемной силы.");
+                    Console.Write("2. ");
+
+                    if (isPlayerInvulnerability==true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+
+                    Console.Write("Тотемное бешенство");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(": уничтожает теневого духа. Можно использовать только если главный противник неуязвим.");
+                    Console.Write("3. ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("Тотемная безмятежность");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(": максимальное количество тотемной силы увеличивается на " + totemSerenityTotemPowerGain + ". Накапливает полный запас тотемной силы. Восстанавливает " + totemSerenityHealingOnOneTotemPower + " ед. здоровья за каждую единицу тотемной силы.");
+                    Console.WriteLine();
+                    Console.WriteLine("Количество тотемной силы - " + totemPower);
+                    Console.WriteLine("Количество здоровья - " + bossHealthPoints);
+                    Console.WriteLine();
                     string commandBoss;
 
-                    if (isPlayerInvulnerability)
+                    if (isPlayerInvulnerability==true)
                     {
                         if (countShadowGhost>0)
                         {
@@ -294,7 +285,7 @@ namespace Homework_1_2_12
                             break;
                         default:
                             Console.WriteLine("Ошибка логики ИИ");
-                            finishBattle = true;
+                            isBattle = true;
                             break;
                     }
                 }
@@ -308,7 +299,7 @@ namespace Homework_1_2_12
 
                 if (playerHealthPoints <= 0 || bossHealthPoints <= 0)
                 {
-                    finishBattle = true;
+                    isBattle = true;
                     Console.WriteLine();
                     Console.WriteLine(playerName + " - количество здоровья: " + playerHealthPoints);
                     Console.WriteLine(bossName + " - количество здоровья: " + bossHealthPoints);
